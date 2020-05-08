@@ -1,5 +1,6 @@
 package br.com.gabrielvicente.brasil;
 
+import br.com.caelum.stella.validation.CNPJValidator;
 import br.com.caelum.stella.validation.CPFValidator;
 import br.com.caelum.stella.validation.InvalidStateException;
 
@@ -16,5 +17,14 @@ public class ValidacaoDocumento {
             System.out.println("CPF inválido: " + e);
         }
 
+//        68075519000172
+        String cnpj = "68075519000172";
+        CNPJValidator validadorCNPJ = new CNPJValidator();
+        try {
+            validadorCNPJ.assertValid(cnpj);
+            System.out.println("CNPJ válido");
+        } catch (InvalidStateException e) {
+            System.out.println("CNPJ inválido" + e);
+        }
     }
 }
