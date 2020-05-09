@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Locale;
 
 public class Data {
     public static void main(String[] args) {
@@ -34,5 +35,11 @@ public class Data {
         System.out.println();
         DateTimeFormatter formatadorCheio = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
         System.out.println(agora.format(formatadorCheio));
+
+        System.out.println();
+        DateTimeFormatter formatadorComNewLocale = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+                .withLocale(new Locale("pt", "br"));
+        System.out.println(agora.format(formatadorComNewLocale));
+        System.out.println();
     }
 }
