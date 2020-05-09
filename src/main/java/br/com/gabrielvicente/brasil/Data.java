@@ -41,5 +41,9 @@ public class Data {
                 .withLocale(new Locale("pt", "br"));
         System.out.println(agora.format(formatadorComNewLocale));
         System.out.println();
+
+        System.out.println(agora.format(formatadorCurto));
+        System.out.println(agora.minusHours(5).format(formatadorCurto));
+        System.out.println(agora.plusHours(10).format(formatadorCurto));
     }
 }
