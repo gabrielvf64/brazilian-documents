@@ -12,18 +12,23 @@ import javax.money.NumberValue;
 
 public class IntegracaoApisDesconto {
     public static void main(String[] args) {
+        // criando a moeda com valor de R$
         CurrencyUnit moeda = Monetary.getCurrency("BRL");
+
+        // criando o valor em moeda
         MonetaryAmount valorParcela = Money.of(75, moeda);
         System.out.println(valorParcela);
 
         MonetaryAmount valorTotal = valorParcela.multiply(12);
         System.out.println(valorTotal);
 
+        // aplicando percentual
         MonetaryAmount desconto = valorTotal.with(MonetaryOperators.percent(10));
         System.out.println(desconto);
 
         NumberValue descontoSemMoeda = desconto.getNumber();
 
+        // convertendo para numero por extenso
         NumericToWordsConverter conversor = new NumericToWordsConverter(new FormatoDeReal());
         String valorPorExtenso = conversor.toWords(descontoSemMoeda.doubleValue());
         System.out.println(valorPorExtenso);
