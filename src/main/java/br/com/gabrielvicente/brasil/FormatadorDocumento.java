@@ -2,40 +2,41 @@ package br.com.gabrielvicente.brasil;
 
 import br.com.caelum.stella.format.CNPJFormatter;
 import br.com.caelum.stella.format.CPFFormatter;
+import br.com.caelum.stella.format.Formatter;
 import br.com.caelum.stella.format.TituloEleitoralFormatter;
 
 public class FormatadorDocumento {
     public static void main(String[] args) {
-        String cpf = "862.883.667-57";
-        String cnpj = "10.156.788/0001-83";
+        String cpf = "86288366757";
+        String cnpjComMascara = "10.156.788/0001-83";
         String tituloEleitor = "815520840108";
 
-        CPFFormatter formatadorCPF = new CPFFormatter();
+        String cpfComMascara = formatarDocumentoComMascara(new CPFFormatter(), cpf);
 
-        String cpfSemFormatacao = formatadorCPF.unformat(cpf);
-
-        System.out.println(cpf);
-        System.out.println(cpfSemFormatacao);
+        System.out.println(cpfComMascara);
 
         imprimeLinhaSeparadora();
 
-        CNPJFormatter formatadorCNPJ = new CNPJFormatter();
-
-        String cnpjSemFormatacao = formatadorCNPJ.unformat(cnpj);
+        String cnpj = formatarDocumentoSemMascara(new CNPJFormatter(), cnpjComMascara);
 
         System.out.println(cnpj);
-        System.out.println(cnpjSemFormatacao);
 
         imprimeLinhaSeparadora();
 
-        TituloEleitoralFormatter formatadorTitulo = new TituloEleitoralFormatter();
-        String tituloComFormatacao = formatadorTitulo.format(tituloEleitor);
+        String tituloEleitorComMascara = formatarDocumentoComMascara(new TituloEleitoralFormatter(), tituloEleitor);
 
-        System.out.println(tituloEleitor);
-        System.out.println(tituloComFormatacao);
+        System.out.println(tituloEleitorComMascara);
+    }
+
+    private static String formatarDocumentoSemMascara(Formatter formatador, String documento) {
+        return formatador.unformat(documento);
+    }
+
+    private static String formatarDocumentoComMascara(Formatter formatador, String documento) {
+        return formatador.format(documento);
     }
 
     private static void imprimeLinhaSeparadora() {
-        System.out.println("======================");
+        System.out.println("============================================");
     }
 }
